@@ -30,6 +30,13 @@ module.exports = {
 
       'xs': { 'max': '400px' },
       // => @media (max-width: 336px) { ... }
+    },
+    extend: {
+      fontFamily: {
+        sans: ['Plus Jakarta Sans', ...require('tailwindcss/defaultTheme').fontFamily.sans],
+        serif: [...require('tailwindcss/defaultTheme').fontFamily.serif],
+        mono: [...require('tailwindcss/defaultTheme').fontFamily.mono],
+      }
     }
   },
   variants: {

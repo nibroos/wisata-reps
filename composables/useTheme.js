@@ -25,7 +25,7 @@ export default function useTheme() {
         //   enabled.value = true
       } else {
         document.documentElement.removeAttribute("data-theme")
-        document.documentElement.style.backgroundColor = "rgb(243 244 246)";
+        document.documentElement.style.backgroundColor = "rgb(255 255 255)";
         //   enabled.value = false
       }
     }

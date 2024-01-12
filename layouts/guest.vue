@@ -1,14 +1,14 @@
 <template>
-  <div class="fixed top-0 left-0 w-full z-40 bg-white dark:bg-zinc-800 dark:text-gray-100">
+  <div class="fixed top-0 sm:top-auto sm:bottom-0 left-0 w-full z-40 bg-white dark:bg-zinc-900 dark:text-gray-100">
 
     <div
-      class="flex flex-row justify-between w-full px-12 py-5 border-b border-gray-200 dark:border-black items-center xs:p-6">
-      <div class="flex flex-row text-gray-400 justify-between w-full">
+      class="flex flex-row justify-between w-full px-32 md:px-20 sm:px-4 py-5 sm:py-2 border-b border-gray-200 dark:border-zinc-700 items-center">
+      <div class="flex flex-row text-zinc-800 justify-between w-full">
 
         <NuxtLink
-          class="font-semibold hover:bg-emerald-100 hover:text-emerald-600 dark:hover:text-white dark:hover:bg-zinc-700 text-center py-2 px-4 rounded-lg transition ease-in-out duration-200"
+          class="font-semibold dark:text-white dark:hover:text-white dark:hover:bg-zinc-700 text-center py-2 px-4 rounded-lg transition ease-in-out duration-200"
           to="/">
-          <h1>{{ runtimeConfig.public.APP_NAME }}</h1>
+          <h1 class="font-bold text-lg sm:text-base">{{ runtimeConfig.public.APP_NAME }}</h1>
         </NuxtLink>
         <div v-auto-animate class="flex flex-row gap-1 items-center text-gray-900 dark:text-gray-50">
           <div :class="{ 'dark:bg-zinc-900': isSettingsOpen }"
@@ -21,11 +21,8 @@
             </svg>
           </div>
           <div v-if="isSettingsOpen"
-            class="block absolute right-0 top-12 py-4 px-4 bg-white dark:bg-zinc-800 dark:border-zinc-700 divide-y divide-gray-100 rounded-lg border border-gray-300 w-56 transition ease-in-out duration-200">
+            class="block absolute right-10 top-16 sm:top-auto sm:bottom-16 sm:right-2 py-4 px-4 bg-white dark:bg-zinc-800 dark:border-zinc-700 divide-y divide-gray-100 rounded-lg border border-gray-300 w-56 transition ease-in-out duration-200">
             <div class="flex flex-col">
-              <div class="relative flex w-full items-center py-2">
-                <div class="flex-grow border-t border-gray-300 dark:border-zinc-700"></div>
-              </div>
               <div class="font-bold my-2">Pengaturan</div>
               <div @click="toggleTheme"
                 class="mt-2 cursor-pointer flex flex-row rounded-lg p-1.5 text-gray-900 dark:text-gray-50 bg-gray-200 hover:bg-gray-300 dark:bg-zinc-900 dark:hover:bg-black text-sm transition ease-in-out duration-200">
@@ -59,7 +56,7 @@
     </div>
   </div>
 
-  <div class="flex flex-col bg-gray-100 dark:bg-zinc-900 mt-24 px-12 py-8 w-full md:px-0 xs:px-0 ms:p-0 min-h-screen"
+  <div class="flex flex-col dark:bg-zinc-900 mt-24 sm:mt-0 px-12 py-8 w-full md:px-0 xs:px-0 min-h-screen"
     @click="toggleCloseDropdown">
     <slot />
   </div>
@@ -77,7 +74,7 @@ useHead({
         document.documentElement.style.backgroundColor = "rgb(24 24 27)";
     } else {
       document.documentElement.removeAttribute("data-theme")
-        document.documentElement.style.backgroundColor = "rgb(243 244 246)";
+        document.documentElement.style.backgroundColor = "rgb(255 255 255)";
     }`}],
   htmlAttrs: {
     lang: 'en',

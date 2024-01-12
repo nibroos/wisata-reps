@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -46,32 +48,6 @@ ul::-webkit-scrollbar-thumb {
 }
 
 ul::-webkit-scrollbar-thumb:hover {
-  background: rgb(5 150 105);
-}
-
-div.reportdetail {
-  scrollbar-width: thin !important;
-  scrollbar-color: rgb(52 211 153 1) rgba(20, 20, 20, 0.075) !important;
-  border-radius: 25px;
-}
-
-div.reportdetail::-webkit-scrollbar {
-  width: 0.75rem;
-  border-radius: 25px;
-  background: rgb(209 250 229);
-}
-
-div.reportdetail::-webkit-scrollbar-track {
-  border-radius: 25px;
-  box-shadow: inset 0 0 2px rgb(5 150 105 1);
-}
-
-div.reportdetail::-webkit-scrollbar-thumb {
-  background: rgb(5 150 105 1);
-  border-radius: 25px;
-}
-
-div.reportdetail::-webkit-scrollbar-thumb:hover {
   background: rgb(5 150 105);
 }
 
@@ -473,121 +449,11 @@ html.fp-enabled,
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.pagination .page-item.active {
-  --tw-bg-opacity: 1;
-  background-color: rgb(99 102 241 / var(--tw-text-opacity));
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-duration: 150ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.pagination .page-item {
-  --tw-text-opacity: 1;
-  color: rgb(99 102 241 / var(--tw-text-opacity));
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-duration: 150ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.pagination .page-item:hover {
-  --tw-bg-opacity: 1;
-  --tw-text-opacity: 1;
-  background-color: rgb(79 70 229 / var(--tw-text-opacity));
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-duration: 150ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.select2-container--default .select2-selection--single .select2-selection__arrow {
-  height: 26px !important;
-  position: absolute !important;
-  top: 7px !important;
-  right: 10px !important;
-  width: 20px !important;
-}
-
-.select2-container--default .select2-selection--single {
-  border-radius: 8px !important;
-}
-
-.select2-container .select2-selection--single {
-  height: 43px !important;
-}
-
-.select2-container--default .select2-selection--single .select2-selection__rendered {
-  line-height: 42px !important;
-  font-size: 0.875rem !important;
-  padding-left: 0.75rem !important;
-}
-
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
-  margin-top: 10px !important;
-  margin-left: 0.35rem !important;
-  padding: 3px 8px !important;
-  border-radius: 0.75rem !important;
-  background-color: #f4f4f4 !important;
-}
-
-.select2-container .select2-selection--multiple {
-  height: fit-content !important;
-}
-
-.select2-container--default .select2-selection--multiple {
-  border-radius: 10px !important;
-  padding: 5px 10px !important;
-}
-
-.select2-container--default .select2-selection--multiple .select2-selection__rendered li {
-  font-size: 0.875rem !important;
-  padding: 4px 8px !important;
-}
-
-.select2-container--default .select2-selection--multiple .select2-selection__rendered {
-  padding: 0 !important;
-}
-
-.select2-container .select2-search--inline .select2-search__field {
-  margin-left: 0;
-}
-
 [contenteditable=true]:empty:before {
   content: attr(placeholder);
   pointer-events: none;
   display: block;
   /* For Firefox */
-}
-
-.dp__range_end,
-.dp__range_start,
-.dp__active_date {
-  background-color: rgb(16 185 129 / 1) !important;
-}
-
-.dp__today {
-  border: 1px solid rgb(16 185 129 / 1) !important;
-}
-
-.dp__select {
-  color: rgb(16 185 129 / 1) !important
-}
-
-.dp__select:hover {
-  background-color: rgb(243 244 246 / 1) !important
-}
-
-.dp__cancel:hover {
-  background-color: rgb(243 244 246 / 1) !important
-}
-
-.dp__input {
-  border: 1px solid rgb(156 163 175 / 1) !important;
-}
-
-.dp__input:hover {
-  background-color: rgb(249 250 251 / 1) !important;
 }
 
 .hover-text {
@@ -722,61 +588,6 @@ html.fp-enabled,
 
 [data-theme="dark"] .multiselect--above .multiselect__content-wrapper {
   border: 0;
-}
-
-.pagination-container {
-  display: flex;
-  column-gap: 0.35rem;
-}
-
-.paginate-buttons {
-  height: 2rem;
-  width: 2rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  background-color: transparent;
-  border: 1px solid transparent;
-  color: black;
-}
-
-.paginate-buttons:hover {
-  background-color: #d8d8d8;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 250ms;
-}
-
-.active-page {
-  background-color: rgb(16 185 129/1);
-  border: 1px solid rgb(16 185 129);
-  color: white;
-}
-
-.active-page:hover {
-  background-color: rgb(4 120 87);
-  border: 1px solid rgb(4 120 87);
-}
-
-[data-theme="dark"] .paginate-buttons {
-  background-color: transparent;
-  border: 1px solid transparent;
-  color: rgb(113 113 122);
-}
-
-[data-theme="dark"] .paginate-buttons:hover {
-  background-color: rgb(63 63 70/1);
-  color: rgb(244 244 245/1)
-}
-
-[data-theme="dark"] .active-page {
-  background-color: rgb(63 63 70/1);
-  border: 1px solid rgb(63 63 70/1);
-  color: white;
-}
-
-[data-theme="dark"] .active-page:hover {
-  background-color: rgb(80, 80, 88);
-  border: 1px solid rgb(80, 80, 88);
 }
 
 [data-theme="dark"] .dark\:bg-zinc-950 {
@@ -1018,4 +829,8 @@ div::-webkit-scrollbar-thumb:hover {
 
 [data-theme="dark"] div::-webkit-scrollbar-thumb:hover {
   background-color: rgb(5, 107, 75) !important;
+}
+
+.prerender-taiwind {
+  @apply w-1/12 w-2/12 w-3/12 w-4/12 w-5/12 w-6/12 w-7/12 w-8/12 w-9/12 w-10/12 w-11/12 grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 grid-cols-5 grid-cols-6 grid-cols-7 grid-cols-8 grid-cols-9 grid-cols-10 grid-cols-11 grid-rows-1 grid-rows-2 grid-rows-3 grid-rows-4 grid-rows-5 grid-rows-6 grid-rows-7 grid-rows-8 grid-rows-9 grid-rows-10 grid-rows-11;
 }

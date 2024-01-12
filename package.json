@@ -11,11 +11,14 @@
   },
   "devDependencies": {
     "nuxt": "^3.9.0",
-    "vue": "^3.4.6",
+    "vue": "^3.3.13",
     "vue-router": "^4.2.5"
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.8.1",
     "@nuxtjs/tailwindcss": "^6.10.4"
+  },
+  "resolutions": {
+    "vue": "3.3.13"
   }
 }
