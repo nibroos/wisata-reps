@@ -5,7 +5,15 @@ export default function () {
     status: 0,
     message: ''
   })
-  const property = ref({})
+  const property = ref({
+    data: {},
+    status: 0,
+    message: '',
+    meta: {
+      title: '',
+      description: '',
+    }
+  })
   const availabilities = ref({})
 
   const isLoadingProperties = ref(false)
@@ -16,7 +24,7 @@ export default function () {
     query = ''
   ) => {
     isLoadingProperties.value = true;
-    $fetch(config.public.BASE_URL + 'property/fts?query=' + query, {
+    $fetch(config.public.API_BASE_URL + 'property/fts?query=' + query, {
       method: 'GET',
     })
       .then(res => {
@@ -42,25 +50,38 @@ export default function () {
     id = ''
   ) => {
     isLoadingProperty.value = true;
-    $fetch(config.public.BASE_URL + 'property?id=' + id, {
+    $fetch(config.public.API_BASE_URL + 'property?id=' + id, {
       method: 'GET',
     })
       .then(res => {
         property.value = {
           data: res,
           status: 200,
-          message: res.message ? res.message : ''
+          message: res.message ? res.message : '',
+          meta: {
+            title: res[id].name,
+            description: res[id].general_info.descriptions.headline ?? ''
+          }
         }
       })
       .catch(err => {
         property.value = {
-          data: [],
+          data: {},
           status: err.status,
-          message: err.response._data.detail.name ? err.response._data.detail.name : ''
+          message: err.response._data.detail.name ? err.response._data.detail.name : '',
+          meta: {
+            title: 'Oops! Something went wrong.',
+            description: ''
+          }
         }
       })
       .finally(() => {
         isLoadingProperty.value = false;
+
+        useSeoMeta({
+          title: property.value.meta.title,
+          description: property.value.meta.description,
+        })
       });
   }
 
@@ -72,7 +93,7 @@ export default function () {
     guest_per_room = 2
   ) => {
     isLoadingAvailabilities.value = true;
-    $fetch(config.public.BASE_URL + 'property/availability/' + id +
+    $fetch(config.public.API_BASE_URL + 'property/availability/' + id +
       '?checkin=' + checkin +
       '&checkout=' + checkout +
       '&number_of_room=' + number_of_room +

@@ -2,11 +2,11 @@
   <div class="fixed top-0 sm:top-auto sm:bottom-0 left-0 w-full z-40 bg-white dark:bg-zinc-900 dark:text-gray-100">
 
     <div
-      class="flex flex-row justify-between w-full px-32 md:px-20 sm:px-4 py-5 sm:py-2 border-b border-gray-200 dark:border-zinc-700 items-center">
+      class="flex flex-row justify-between w-full px-32 lg:px-24 md:px-8 sm:px-4 py-3 sm:py-2 border-b border-gray-200 dark:border-zinc-700 items-center">
       <div class="flex flex-row text-zinc-800 justify-between w-full">
 
         <NuxtLink
-          class="font-semibold dark:text-white dark:hover:text-white dark:hover:bg-zinc-700 text-center py-2 px-4 rounded-lg transition ease-in-out duration-200"
+          class="font-semibold dark:text-white dark:hover:text-white dark:hover:bg-zinc-700 text-center py-2 rounded-lg transition ease-in-out duration-200"
           to="/">
           <h1 class="font-bold text-lg sm:text-base">{{ runtimeConfig.public.APP_NAME }}</h1>
         </NuxtLink>
@@ -56,7 +56,8 @@
     </div>
   </div>
 
-  <div class="flex flex-col dark:bg-zinc-900 mt-24 sm:mt-0 px-12 py-8 w-full md:px-0 xs:px-0 min-h-screen"
+  <div
+    class="flex flex-col dark:bg-zinc-900 sm:mt-0 px-32 lg:px-24 w-full md:px-0 xs:px-0 min-h-screen text-zinc-900 dark:text-zinc-50"
     @click="toggleCloseDropdown">
     <slot />
   </div>

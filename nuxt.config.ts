@@ -12,16 +12,16 @@ export default defineNuxtConfig({
   ],
   app:{
     head:{
-      title: 'Wisata App Reps',
+      title: 'Wisata App',
       meta:[
-        { name: 'description', content: 'Wisata App - Nibros Ari Wibowo' }
+        { name: 'description', content: 'Find amazing hotel deals that blend luxury with affordability for your perfect holiday' }
       ],
     },
   },
   runtimeConfig: {
     public: {
       APP_NAME: process.env.APP_NAME,
-      BASE_URL: process.env.NUXT_PUBLIC_BASE_URL,
+      API_BASE_URL: process.env.API_BASE_URL,
     },
   },
 })

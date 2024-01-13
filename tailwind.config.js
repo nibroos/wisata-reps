@@ -10,10 +10,10 @@ module.exports = {
   ],
   theme: {
     screens: {
-      '2xl': { 'max': '1535px' },
+      '2xl': { 'min': '1281px' },
       // => @media (max-width: 1535px) { ... }
 
-      'xl': { 'max': '1279px' },
+      'xl': { 'min': '1024px' },
       // => @media (max-width: 1279px) { ... }
 
       'lg': { 'max': '1023px' },
