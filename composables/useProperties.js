@@ -20,25 +20,39 @@ export default function () {
   const isLoadingProperty = ref(false)
   const isLoadingAvailabilities = ref(false)
 
+  const initialLoadProperties = ref(true)
+  const initialLoadProperty = ref(true)
+  const initialLoadAvailabilities = ref(true)
+
   const getProperties = async (
     query = ''
   ) => {
     isLoadingProperties.value = true;
+    initialLoadProperties.value = false;
+
     $fetch(config.public.API_BASE_URL + 'property/fts?query=' + query, {
       method: 'GET',
     })
       .then(res => {
-        properties.value = {
-          data: res,
-          status: 200,
-          message: res.message ? res.message : ''
+        if (Object.keys(res).length > 0) {
+          properties.value = {
+            data: res,
+            status: 200,
+            message: res.message ? res.message : ''
+          }
+        } else {
+          properties.value = {
+            data: [],
+            status: 404,
+            message: 'Not Found'
+          }
         }
       })
       .catch(err => {
         properties.value = {
           data: [],
-          status: err.status,
-          message: err.response._data.detail.name ? err.response._data.detail.name : ''
+          status: err.status ?? 0,
+          message: err.response._data.detail.name ?? ''
         }
       })
       .finally(() => {
@@ -50,25 +64,40 @@ export default function () {
     id = ''
   ) => {
     isLoadingProperty.value = true;
+    initialLoadProperty.value = false;
+
     $fetch(config.public.API_BASE_URL + 'property?id=' + id, {
       method: 'GET',
     })
       .then(res => {
-        property.value = {
-          data: res,
-          status: 200,
-          message: res.message ? res.message : '',
-          meta: {
-            title: res[id].name,
-            description: res[id].general_info.descriptions.headline ?? ''
+
+        if (Object.keys(res).length > 0) {
+          property.value = {
+            data: res,
+            status: 200,
+            message: res.message ? res.message : '',
+            meta: {
+              title: res[id].name ?? '',
+              description: res[id].general_info.descriptions.headline ?? ''
+            }
+          }
+        } else {
+          property.value = {
+            data: {},
+            status: 404,
+            message: 'Not Found',
+            meta: {
+              title: 'Not Found',
+              description: 'Oops! Something went wrong.'
+            }
           }
         }
       })
       .catch(err => {
         property.value = {
           data: {},
-          status: err.status,
-          message: err.response._data.detail.name ? err.response._data.detail.name : '',
+          status: err.status ?? 0,
+          message: err.response._data.detail.name ?? '',
           meta: {
             title: 'Oops! Something went wrong.',
             description: ''
@@ -77,11 +106,6 @@ export default function () {
       })
       .finally(() => {
         isLoadingProperty.value = false;
-
-        useSeoMeta({
-          title: property.value.meta.title,
-          description: property.value.meta.description,
-        })
       });
   }
 
@@ -93,6 +117,8 @@ export default function () {
     guest_per_room = 2
   ) => {
     isLoadingAvailabilities.value = true;
+    initialLoadAvailabilities.value = false;
+
     $fetch(config.public.API_BASE_URL + 'property/availability/' + id +
       '?checkin=' + checkin +
       '&checkout=' + checkout +
@@ -111,8 +137,8 @@ export default function () {
       .catch(err => {
         availabilities.value = {
           data: [],
-          status: err.status,
-          message: err.response._data.detail.name ? err.response._data.detail.name : ''
+          status: err.status ?? 0,
+          message: err.response._data.detail.name ?? ''
         }
       })
       .finally(() => {
@@ -129,6 +155,9 @@ export default function () {
     getProperty,
     isLoadingAvailabilities,
     availabilities,
-    getAvailabilities
+    getAvailabilities,
+    initialLoadProperty,
+    initialLoadProperties,
+    initialLoadAvailabilities
   }
 }
