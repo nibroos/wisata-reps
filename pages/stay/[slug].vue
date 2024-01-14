@@ -46,6 +46,7 @@
 
         <ListRoomComponent :isLoadingAvailabilities="isLoadingAvailabilities" :isLoadingProperty="isLoadingProperty"
           :availabilities="availabilities" :property="property" :propertyId="propertyId"
+          :isFreeBreakfast="isFreeBreakfast" :isFreeCancelation="isFreeCancelation"
           class="md:!px-8 sm:!px-0 pt-4 mb-16" />
 
       </div>

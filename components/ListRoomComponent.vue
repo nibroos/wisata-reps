@@ -41,14 +41,14 @@
         </div>
         <div class="flex flex-col sm:flex-row gap-1 w-4/12 sm:w-full rounded-full z-20">
           <img :class="{ '!rounded-lg': item.images.length < 4 }"
-            class="object-cover h-32 sm:h-64 w-full rounded-t-lg sm:!rounded-none"
+            class="object-cover h-32 xl:h-40 2xl:h-48 sm:h-64 w-full rounded-t-lg sm:!rounded-none"
             :src="item.images[0].links['350px'].href" alt="">
           <div class="flex flex-row sm:flex-col gap-1" v-if="item.images.length > 3">
             <div v-for="(imageItem, imageIndex) in item.images.slice(1, 4)" :key="imageIndex"
               class="w-1/3 sm:w-full sm:grow">
               <img
                 :class="{ 'rounded-bl-lg sm:rounded-none': imageIndex == 0, 'rounded-br-lg sm:rounded-none': imageIndex == 2 }"
-                class="object-cover h-20 w-full" :src="imageItem.links['350px'].href" alt="">
+                class="object-cover h-20 xl:h-28 2xl:h-36 w-full" :src="imageItem.links['350px'].href" alt="">
             </div>
           </div>
         </div>
@@ -85,7 +85,7 @@
                 '!border-t-0': offerIndex == lowestHighestIndexByRoomId(offer.room_data.id, 1),
                 'sm:!border-b-0': offerIndex == lowestHighestIndexByRoomId(offer.room_data.id, 0),
               }" class="flex flex-col gap-1 p-4 border-t border-x border-zinc-300"
-                v-if="offer.room_data.id == item.id">
+                v-if="offer.room_data.id == item.id && filterByOptions(offer)">
 
                 <div class="flex flex-row ms:flex-col text-sm ms:text-xs">
                   <div class="flex flex-col gap-4 w-9/12 ms:w-full">
@@ -118,9 +118,9 @@
                         SAVE {{ percentage(offer.pricing_data.saving_pct) }}% TODAY!
                       </div>
                       <div class="text-xs font-semibold text-zinc-500">
-                        <strike>
+                        <s>
                           {{ rupiah(offer.pricing_data.strikethrough_rate_nightly) }}
-                        </strike>
+                        </s>
                       </div>
                       <div class="text-zinc-900 text-sm w-full whitespace-nowrap">
                         <div>
@@ -200,8 +200,10 @@
               </div>
             </div>
 
-            <div v-if="availabilities.data.offers.length === 0 || countReviewByRoomId(item.id) === 0"
+            <div
+              v-if="availabilities.data.offers.length === 0 || countReviewByRoomId(item.id) === 0 || countFilteredOffers(item.id) === 0"
               class="flex flex-col justify-center items-center gap-1 p-4 border-b border-x rounded-b-lg border-zinc-300 min-h-32">
+
               Currently, no offers are available for this room.
             </div>
 
@@ -229,7 +231,9 @@ const props = defineProps({
   },
   propertyId: '',
   isLoadingProperty: false,
-  isLoadingAvailabilities: false
+  isLoadingAvailabilities: false,
+  isFreeBreakfast: 0,
+  isFreeCancelation: 0,
 })
 
 const lowestHighestIndexByRoomId = (roomId, isLowest) => {
@@ -268,5 +272,50 @@ const countReviewByRoomId = (roomId) => {
   return count;
 }
 
+const countFilteredOffers = (roomId) => {
+  let count = 0;
+  let array = props.availabilities.data.offers;
+
+  for (let i = 0; i < array.length; i++) {
+
+    if (
+      array[i].room_data.id == roomId
+    ) {
+      let condition = true;
+      if (isFreeBreakfast.value == 1 && array[i].meal_plan_code != 'BB') {
+        condition = false;
+      }
+
+      if (isFreeCancelation.value == 1 && array[i].cancel_policy_code != 'FC') {
+        condition = false;
+      }
+
+      if (!!condition) {
+        count++;
+      }
+    }
+  }
+
+  return count;
+}
+
+const filterByOptions = (offer) => {
+
+  //   && (!!isFreeBreakfast.value && array[i].room_data.meal_plan_code == 'BB')
+  // && (!!isFreeCancelation.value && array[i].cancel_policy_code == 'FC')
+  // offer.room_data.id == offer.id
+
+  let condition = true;
+
+  if (isFreeBreakfast.value == 1 && offer.meal_plan_code != 'BB') {
+    condition = false;
+  }
+
+  if (isFreeCancelation.value == 1 && offer.cancel_policy_code != 'FC') {
+    condition = false;
+  }
+
+  return condition;
+}
+
 </script>
-../utils/numberTransform
