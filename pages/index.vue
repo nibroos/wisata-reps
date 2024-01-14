@@ -1,5 +1,6 @@
 <template>
-  <div class="text-zinc-900 flex justify-center items-center h-screen">
+  <div :class="{ '!mt-32 !h-max': properties.data.length > 6 }"
+    class="text-zinc-900 flex justify-center items-center h-screen">
     <div class="flex flex-col justify-center items-center w-full gap-4 sm:px-8">
       <h1 class="text-2xl dark:text-white font-bold">Discover the best hotel deals</h1>
 

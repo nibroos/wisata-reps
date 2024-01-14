@@ -3,9 +3,9 @@
     <div v-if="isLoading" class="w-full">
       <LoadingComponent :rows="5" :height="10" />
     </div>
-    <div v-else-if="props.data.data.length == 0 && props.data.status != 200" class="w-full">
+    <div v-else-if="props.data.data.length == 0 && !props.data.status" class="w-full">
     </div>
-    <div v-else-if="props.data.data.length == 0" class="w-full">
+    <div v-else-if="props.data.data.length == 0 && props.data.status != 200" class="w-full">
       <div class="flex flex-col w-full justify-center items-center">
         <div class="font-bold truncate">Oops! No result you're looking for</div>
         <div class="text-sm">Try another keyword</div>

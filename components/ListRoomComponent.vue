@@ -9,9 +9,9 @@
         <div class="text-sm">Try another keyword</div>
       </div>
     </div>
-    <div v-else class="flex flex-col gap-4 sm:gap-6 w-full sm:bg-zinc-100">
+    <div v-else class="flex flex-col gap-4 sm:gap-6 w-full sm:bg-zinc-100 dark:bg-zinc-900">
       <div v-for="(item, index) in property.data[propertyId].room" :key="index"
-        class="flex flex-row gap-4 sm:gap-0 sm:flex-col sm:bg-white">
+        class="flex flex-row gap-4 sm:gap-0 sm:flex-col sm:bg-white dark:bg-zinc-950">
 
         <div class="hidden sm:flex flex-row sm:flex-col ms:!text-xs">
           <div
@@ -118,7 +118,7 @@
 
                       <div class="flex flex-col gap-1 text-xs">
                         <div class="bg-orange-600 py-1 px-2 text-xs w-max text-white font-semibold">
-                          SAVE {{ percentage(offer.pricing_data.saving_pct) }}% TODAY!
+                          SAVE {{ percentage(offer.pricing_data.saving_pct) }} TODAY!
                         </div>
                         <div class="text-xs font-semibold text-zinc-500">
                           <s>
@@ -310,10 +310,6 @@ const countFilteredOffers = (roomId) => {
 }
 
 const filterByOptions = (offer) => {
-
-  //   && (!!isFreeBreakfast.value && array[i].room_data.meal_plan_code == 'BB')
-  // && (!!isFreeCancelation.value && array[i].cancel_policy_code == 'FC')
-  // offer.room_data.id == offer.id
 
   let condition = true;
 
