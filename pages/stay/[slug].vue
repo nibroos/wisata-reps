@@ -3,7 +3,7 @@
 
     <div class="flex flex-col gap-4 mt-16 sm:mt-0">
       <div class="flex flex-col gap-4">
-        <div v-if="isLoadingProperty" class="flex flex-row sm:flex-col gap-4 items-center md:px-8 sm:px-0 pb-8">
+        <div v-if="isLoadingProperty" class="flex flex-row sm:flex-col gap-4 items-center md:px-8 sm:px-0 py-8 sm:pt-2">
           <LoadingComponent :cols="1" :rows="3" :height="10" class="w-4/12 sm:w-8/12 xs:w-10/12" />
           <LoadingComponent :cols="1" :rows="5" :height="10" class="w-8/12 xs:w-10/12" />
         </div>
@@ -11,7 +11,7 @@
           :property="property" />
         <TabComponent v-if="Object.keys(property.data).length > 0" :configs="tabConfigs" @activeTab="toggleTab"
           class="border-t sm:border-t-0 border-zinc-300 dark:border-zinc-700 uppercase flex justify-center" />
-        <div class="flex flex-row sm:flex-col justify-center sm:!justify-start text-sm gap-4 sm:px-8 sm:mt-1">
+        <div class="flex flex-row sm:flex-col justify-center sm:!justify-start text-sm gap-4 sm:px-8 ms:px-4 sm:mt-1">
           <div class="flex flex-row items-center gap-2 font-bold">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
               <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -45,7 +45,8 @@
         </div>
 
         <ListRoomComponent :isLoadingAvailabilities="isLoadingAvailabilities" :isLoadingProperty="isLoadingProperty"
-          :availabilities="availabilities" :property="property" :propertyId="propertyId" class="md:!px-8 mt-4" />
+          :availabilities="availabilities" :property="property" :propertyId="propertyId"
+          class="md:!px-8 sm:!px-0 pt-4 mb-16" />
 
       </div>
     </div>
