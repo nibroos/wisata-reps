@@ -1,75 +1,42 @@
-# Nuxt 3 Minimal Starter
+# Test Fullstack
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Live frontend: [https://test-fullstack.nibross.com](https://test-fullstack.nibross.com)
 
-## Setup
+## Requirements
 
-Make sure to install the dependencies:
+- Nodejs 18
 
+## Installation
+
+#### setup
 ```bash
-# npm
+# Install dependencies
 npm install
 
-# pnpm
-pnpm install
+# Create .env file
+cp .env.example .env
 
-# yarn
-yarn install
+# Edit .env, set the backend config. Focus on:
+API_BASE_URL      #URL of the API
+APP_NAME          #Name of the app
 
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
+# Run server
 npm run dev
 
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+# Build for production
+npm run generate
 ```
 
-## Production
 
-Build the application for production:
+## Technologies
 
-```bash
-# npm
-npm run build
+- Nuxt 3.9.0
+- Vue 3.3.13
+- TailwindCSS 3.3.5
 
-# pnpm
-pnpm run build
+## Features
 
-# yarn
-yarn build
+- Fully responsive (from 480px to 2k resolution)
+- Dark mode
 
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+### Home page
