@@ -11,7 +11,7 @@
     </div>
     <div v-else class="flex flex-col gap-4 sm:gap-6 w-full sm:bg-zinc-100 dark:bg-zinc-900">
       <div v-for="(item, index) in property.data[propertyId].room" :key="index"
-        class="flex flex-row gap-4 sm:gap-0 sm:flex-col sm:bg-white dark:bg-zinc-950">
+        class="flex flex-row gap-4 sm:gap-0 sm:flex-col sm:bg-white sm:dark:bg-zinc-950">
 
         <div class="hidden sm:flex flex-row sm:flex-col ms:!text-xs">
           <div
