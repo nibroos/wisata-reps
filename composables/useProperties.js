@@ -135,9 +135,11 @@ export default function () {
         }
       })
       .catch(err => {
+        console.log(err);
+        console.log(err.response);
         availabilities.value = {
           data: [],
-          status: err.status ?? 0,
+          status: err.response.status ?? 0,
           message: err.response._data.detail.name ?? ''
         }
       })

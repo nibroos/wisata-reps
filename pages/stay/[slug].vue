@@ -11,15 +11,54 @@
           :property="property" />
         <TabComponent v-if="Object.keys(property.data).length > 0" :configs="tabConfigs" @activeTab="toggleTab"
           class="border-t sm:border-t-0 border-zinc-300 dark:border-zinc-700 uppercase flex justify-center" />
-        <div class="flex flex-row sm:flex-col justify-center sm:!justify-start text-sm gap-4 sm:px-8 ms:px-4 sm:mt-1">
+        <div v-if="property.status >= 200 && property.status < 300"
+          class="flex flex-row sm:flex-col justify-center sm:!justify-start text-sm gap-4 md:px-8 ms:px-4 sm:mt-1">
           <div class="flex flex-row items-center gap-2 font-bold">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
               <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M22 3H2l8 9.46V19l4 2v-8.54z" />
             </svg>
-            <span>Filter rooms by</span>
+            <span class="whitespace-nowrap">Filter rooms by</span>
           </div>
-          <div class="flex flex-row sm:flex-wrap gap-4 font-medium">
+          <div class="flex flex-row flex-wrap items-center gap-4 font-medium">
+
+            <CapsuleInputComponent :class="'xs:!w-full'" label="Rooms" labelFor="number_of_rooms"
+              :initialValue="number_of_rooms" @update:inputValue="number_of_rooms = $event">
+              <template #icon>
+                <svg class="w-max" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                  <path fill="currentColor"
+                    d="M4 21q-.425 0-.712-.288T3 20q0-.425.288-.712T4 19h1V4q0-.425.288-.712T6 3h8q.425 0 .713.288T15 4h3q.425 0 .713.288T19 5v14h1q.425 0 .713.288T21 20q0 .425-.288.713T20 21h-2q-.425 0-.712-.288T17 20V6h-2v14q0 .425-.288.713T14 21zM7 5v14zm5 7q0-.425-.288-.712T11 11q-.425 0-.712.288T10 12q0 .425.288.713T11 13q.425 0 .713-.288T12 12m-5 7h6V5H7z" />
+                </svg>
+              </template>
+            </CapsuleInputComponent>
+
+            <CapsuleInputComponent :class="'xs:!w-full'" label="Guests" labelFor="number_of_guests"
+              :initialValue="number_of_guests" @update:inputValue="number_of_guests = $event">
+              <template #icon>
+                <svg class="w-max" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                  <path fill="currentColor"
+                    d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 2a2 2 0 0 0-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2m0 7c2.67 0 8 1.33 8 4v3H4v-3c0-2.67 5.33-4 8-4m0 1.9c-2.97 0-6.1 1.46-6.1 2.1v1.1h12.2V17c0-.64-3.13-2.1-6.1-2.1" />
+                </svg>
+              </template>
+            </CapsuleInputComponent>
+
+            <VueDatePicker v-model="checkin" auto-apply placeholder="Select date" @update:model-value="setStartDate"
+              format="dd/MM/yyyy" cancelText="Cancel" selectText="Select" :enable-time-picker="false" show-now-button
+              :clearable="false" text-input class="!w-40 xs:!w-full">
+              <template #now-button="{ selectCurrentDate }">
+                <button class="hover:bg-gray-100 dark:hover:bg-zinc-900 w-full text-sm dark:text-white transition p-2"
+                  @click="selectCurrentDate()">Today</button>
+              </template>
+            </VueDatePicker>
+
+            <VueDatePicker v-model="checkout" auto-apply placeholder="Select date" @update:model-value="setEndDate"
+              format="dd/MM/yyyy" cancelText="Cancel" selectText="Select" :enable-time-picker="false" show-now-button
+              :clearable="false" text-input class="!w-40 xs:!w-full">
+              <template #now-button="{ selectCurrentDate }">
+                <button class="hover:bg-gray-100 dark:hover:bg-zinc-900 w-full text-sm dark:text-white transition p-2"
+                  @click="selectCurrentDate()">Today</button>
+              </template>
+            </VueDatePicker>
 
             <OptionMultiSelectComponent :class="'xs:!w-full'" label="Free Breakfast" labelFor="isFreeBreakfast"
               :optionValue="isFreeBreakfast" @update:selected="isFreeBreakfast = $event">
@@ -44,10 +83,27 @@
           </div>
         </div>
 
-        <ListRoomComponent :isLoadingAvailabilities="isLoadingAvailabilities" :isLoadingProperty="isLoadingProperty"
+        <ListRoomComponent v-if="property.status >= 200 && property.status < 300"
+          :isLoadingAvailabilities="isLoadingAvailabilities" :isLoadingProperty="isLoadingProperty"
           :availabilities="availabilities" :property="property" :propertyId="propertyId"
           :isFreeBreakfast="isFreeBreakfast" :isFreeCancelation="isFreeCancelation"
           class="md:!px-8 sm:!px-0 pt-4 mb-16" />
+
+        <div v-else-if="!isLoadingProperty && property.status > 300"
+          class="flex flex-col justify-center items-center h-screen">
+          <div>
+            <div class="flex flex-col items-center justify-center gap-2">
+              <span class="text-lg font-bold">Oops!</span>
+              <span class="text-sm">Looks like the property you're looking for is not available</span>
+            </div>
+
+            <div class="flex flex-col items-center justify-center gap-2 mt-4">
+              <NuxtLink :to="'/'" class="text-sm text-white bg-blue-600 hover:bg-blue-500 rounded-md py-2 px-3">Let me
+                find another one!</NuxtLink>
+            </div>
+          </div>
+
+        </div>
 
       </div>
     </div>
@@ -55,9 +111,14 @@
 </template>
 
 <script setup>
+import moment from "moment";
 
 const isFreeBreakfast = ref(0)
 const isFreeCancelation = ref(0)
+const checkin = ref('2024-06-25')
+const checkout = ref('2024-06-26')
+const number_of_rooms = ref(1)
+const number_of_guests = ref(2)
 
 const route = useRoute()
 const {
@@ -97,6 +158,26 @@ const toggleTab = (index) => {
   tabConfigs.activeTab = index
 }
 
+const setStartDate = (value) => {
+  if (!!value) {
+    checkin.value = moment(value).format('YYYY-MM-DD')
+    checkout.value = checkin.value > checkout.value ? moment(checkin.value).add(1, 'days').format('YYYY-MM-DD') : checkout.value
+  }
+}
+
+const setEndDate = (value) => {
+  if (!!value) {
+    checkout.value = moment(value).format('YYYY-MM-DD')
+    checkin.value = checkout.value < checkin.value ? moment(checkout.value).subtract(1, 'days').format('YYYY-MM-DD') : checkin.value
+
+  }
+}
+
+watch(number_of_rooms, (current, previous) => {
+  console.log('number_of_rooms', current, previous);
+  getAvailabilities(propertyId.value, checkin.value, checkout.value, current, number_of_guests.value)
+});
+
 onMounted(() => {
   // getProperties(route.params.slug)
 })
@@ -118,7 +199,7 @@ watchEffect(() => {
   }
 
   if (Object.keys(property.value.data).length !== 0) {
-    getAvailabilities(propertyId.value)
+    getAvailabilities(propertyId.value, checkin.value, checkout.value, number_of_rooms.value, number_of_guests.value)
     useSeoMeta({
       title: property.value.meta.title,
       description: property.value.meta.description,

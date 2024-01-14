@@ -16,7 +16,10 @@
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.8.1",
-    "@nuxtjs/tailwindcss": "^6.10.4"
+    "@nuxtjs/tailwindcss": "^6.10.4",
+    "@vuepic/vue-datepicker": "^7.4.1",
+    "moment": "^2.30.1",
+    "vue-ssr-carousel": "^2.3.3"
   },
   "resolutions": {
     "vue": "3.3.13"
