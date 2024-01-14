@@ -14,10 +14,11 @@
         class="flex flex-row gap-4 sm:gap-0 sm:flex-col sm:bg-white">
 
         <div class="hidden sm:flex flex-row sm:flex-col ms:!text-xs">
-          <div class="flex flex-col gap-1 p-4 border sm:border-none border-zinc-300 rounded-t-lg sm:rounded-none">
+          <div
+            class="flex flex-col gap-1 p-4 border sm:border-none border-zinc-300 dark:border-zinc-700 rounded-t-lg sm:rounded-none">
             <div class="font-bold ms:text-base">{{ item.name }}</div>
             <div v-for="(bed_group, bgIndex) in item.bed_groups" :key="bgIndex"
-              class="flex flex-row gap-3 text-zinc-600 font-medium items-center">
+              class="flex flex-row gap-3 text-zinc-600 dark:text-zinc-400 font-medium items-center">
               <div v-if="bed_group.description" class="flex flex-row gap-1 items-center">
                 <div>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
@@ -54,10 +55,10 @@
         </div>
         <div class="flex flex-col w-8/12 sm:w-full">
           <div
-            class="flex flex-col gap-1 p-4 border sm:border-none border-zinc-300 rounded-t-lg sm:rounded-none sm:hidden">
+            class="flex flex-col gap-1 p-4 border sm:border-none border-zinc-300 dark:border-zinc-700 rounded-t-lg sm:rounded-none sm:hidden dark:bg-zinc-950">
             <div class="font-bold">{{ item.name }}</div>
             <div v-for="(bed_group, bgIndex) in item.bed_groups" :key="bgIndex"
-              class="flex flex-row gap-3 text-sm text-zinc-600 font-medium items-center">
+              class="flex flex-row gap-3 text-sm text-zinc-600 dark:text-zinc-400 font-medium items-center">
               <div v-if="bed_group.description" class="flex flex-row gap-1 items-center">
                 <div>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
@@ -85,7 +86,8 @@
                   '!border-b !rounded-b-lg sm:!rounded-none': offerIndex == lowestHighestIndexByRoomId(offer.room_data.id, 0),
                   '!border-t-0': offerIndex == lowestHighestIndexByRoomId(offer.room_data.id, 1),
                   'sm:!border-b-0': offerIndex == lowestHighestIndexByRoomId(offer.room_data.id, 0),
-                }" class="flex flex-col gap-1 p-4 border-t border-x border-zinc-300"
+                }"
+                  class="flex flex-col gap-1 p-4 border-t border-x border-zinc-300 dark:border-zinc-700 dark:bg-zinc-950"
                   v-if="offer.room_data.id == item.id && filterByOptions(offer)">
 
                   <div class="flex flex-row ms:flex-col text-sm ms:text-xs">
@@ -123,7 +125,7 @@
                             {{ rupiah(offer.pricing_data.strikethrough_rate_nightly) }}
                           </s>
                         </div>
-                        <div class="text-zinc-900 text-sm w-full whitespace-nowrap">
+                        <div class="text-zinc-900 dark:text-white text-sm w-full whitespace-nowrap">
                           <div>
                             <span class="font-semibold">
                               {{ rupiah(offer.pricing_data.net_rate_nightly_with_bonus) }}</span> / night *
@@ -158,7 +160,7 @@
                         <div>Book Now</div>
                       </div>
                       <div v-if="offer.pricing_data.wisata_point > 0"
-                        class="hidden ms:flex ms:w-full flex-row justify-end ms:justify-center items-center gap-1 w-3/12 text-blue-600 whitespace-nowrap">
+                        class="hidden ms:flex ms:w-full flex-row justify-end ms:justify-center items-center gap-1 w-3/12 text-blue-600 dark:text-blue-400 whitespace-nowrap">
                         <div>
                           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" role="img"
                             aria-hidden="true">
@@ -185,7 +187,7 @@
                       <span>Member-only price, valid in app only</span>
                     </div>
                     <div v-if="offer.pricing_data.wisata_point > 0"
-                      class="flex flex-row justify-end items-center gap-1 w-3/12 text-blue-600 whitespace-nowrap">
+                      class="flex flex-row justify-end items-center gap-1 w-3/12 text-blue-600 dark:text-blue-400 whitespace-nowrap">
                       <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" role="img"
                           aria-hidden="true">
@@ -203,14 +205,14 @@
 
               <div
                 v-if="availabilities.data.offers.length === 0 || countReviewByRoomId(item.id) === 0 || countFilteredOffers(item.id) === 0"
-                class="flex flex-col justify-center items-center gap-1 p-4 border-b border-x rounded-b-lg border-zinc-300 min-h-32">
+                class="flex flex-col justify-center items-center gap-1 p-4 border-b border-x rounded-b-lg border-zinc-300 dark:border-zinc-700 dark:bg-zinc-950 min-h-32">
 
                 Currently, no offers are available for this room.
               </div>
             </div>
 
             <div v-else
-              class="flex flex-col justify-center items-center gap-1 p-4 border-b border-x rounded-b-lg border-zinc-300 min-h-32">
+              class="flex flex-col justify-center items-center gap-1 p-4 border-b border-x rounded-b-lg border-zinc-300 dark:border-zinc-700 dark:bg-zinc-950 min-h-32">
 
               Currently, no offers are available for this room.
             </div>
