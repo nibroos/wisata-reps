@@ -133,7 +133,7 @@
                         </div>
                         <div
                           v-if="offer.pricing_data.net_rate_nightly_with_bonus !== offer.pricing_data.net_price_total_with_bonus"
-                          class="text-zinc-900 text-sm w-full whitespace-nowrap">
+                          class="text-zinc-900 dark:text-white text-sm w-full whitespace-nowrap">
                           <div>Total <span>·</span> {{ rupiah(offer.pricing_data.net_price_total_with_bonus) }}</div>
                         </div>
                         <div class="text-zinc-400">

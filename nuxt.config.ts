@@ -24,4 +24,9 @@ export default defineNuxtConfig({
       API_BASE_URL: process.env.API_BASE_URL,
     },
   },
+  routeRules: {
+    '/stay/**': { ssr: true },
+    '/': { static: true },
+  }
+    
 })
