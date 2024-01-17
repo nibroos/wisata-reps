@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    '/stay/**': { ssr: true },
+    '/stay/**': { swr: 600, static: true },
     '/': { static: true },
   }
     
